@@ -1,3 +1,4 @@
 *.docx
 *.xlsx
+*.exe
 node_modules
