@@ -1,29 +1,27 @@
 
 
+const getnameAsync =  async(idPost) => {   //estructura de la funcion
 
-const getnameAsync = async(idPost) =>{
+try { //codigo que se ejecuta en caso de que el pedido este bien//
 
-try {
-    const resPost = await fetch (`https://jsonplaceholder.typicode.com/posts/4${idPost}`)//primero guardar en una variable el pedido de informacion
-console.log(resPost)
+const resPost = await fetch (`https://jsonplaceholder.typicode.com/posts/${idPost}`)
+//  console.log(resPost);
+const post = await resPost.json()
+console.log(post)
+
+const respUser = await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`)
+const user =await respUser.json()
+console.log(user)
 
 
-    
-// otra variable convertida en json//
+console.log(`La Persona que escribio el post ${post.id} es ${user.name} ${user.username}`)
 
+} catch (error) { //se ejecuta por defecto del servidor y te redirecciona 
 
-//codigo que se va a ejecutar en que caso que el pedido este todo bien sino se ejecuta el catch que viene por defecto 
+console.log(error)
 
-} catch (error) {
-    console.log(error)// me va a mostrar por consola el error
 }
 
-
 }
 
-getnameAsync(18)
-
-async function pepe(url) {
-    return 2 + 2;
-}
-
+getnameAsync(23)
